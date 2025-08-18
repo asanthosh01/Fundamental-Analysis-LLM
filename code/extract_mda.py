@@ -1,7 +1,7 @@
 import re
 
 def extract_mda_section(text):
-    # Normalize the text (case + spacing)
+    # Normalize the text (case/spacing)
     lower_text = text.lower()
 
     # find start and end of MD&A section
