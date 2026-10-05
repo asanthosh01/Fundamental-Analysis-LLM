@@ -1,0 +1,88 @@
+{
+  "schema_version": 1,
+  "source_type": "synthetic_demo",
+  "evaluated_at": "2026-10-05T22:36:12.583638+00:00",
+  "data_sha256": "4bf487d4e9d200ef93e21ec4d2a69da7b41b3822088b9aefb5171e3ca414f4a3",
+  "features": [
+    "sentiment_score",
+    "revenue_growth",
+    "net_margin",
+    "cashflow_margin",
+    "liabilities_to_assets"
+  ],
+  "target": "positive when supplied post-filing forward_return > 0, negative otherwise",
+  "method": "60/20/20 chronological dates; purge training/validation labels crossing the next split; fixed parameters",
+  "rows": 240,
+  "purged_rows": 5,
+  "probabilities": "Raw model estimates, not calibrated",
+  "splits": {
+    "train": {
+      "start": "2016-01-01",
+      "end": "2018-04-01",
+      "model": {
+        "n": 140,
+        "accuracy": 0.8142857142857143,
+        "balanced_accuracy": 0.8102564102564103,
+        "brier_score": 0.13535012304782867,
+        "roc_auc": 0.9228717948717948
+      },
+      "majority_baseline": {
+        "n": 140,
+        "accuracy": 0.5357142857142857,
+        "balanced_accuracy": 0.5,
+        "brier_score": 0.24872448979591835,
+        "roc_auc": 0.5
+      }
+    },
+    "validation": {
+      "start": "2018-05-01",
+      "end": "2019-01-01",
+      "model": {
+        "n": 45,
+        "accuracy": 0.6,
+        "balanced_accuracy": 0.61,
+        "brier_score": 0.23791709542274475,
+        "roc_auc": 0.6619999999999999
+      },
+      "majority_baseline": {
+        "n": 45,
+        "accuracy": 0.4444444444444444,
+        "balanced_accuracy": 0.5,
+        "brier_score": 0.2552437641723357,
+        "roc_auc": 0.5
+      }
+    },
+    "test": {
+      "start": "2019-03-01",
+      "end": "2019-12-01",
+      "model": {
+        "n": 50,
+        "accuracy": 0.58,
+        "balanced_accuracy": 0.5849358974358975,
+        "brier_score": 0.2354206144809723,
+        "roc_auc": 0.673076923076923
+      },
+      "majority_baseline": {
+        "n": 50,
+        "accuracy": 0.48,
+        "balanced_accuracy": 0.5,
+        "brier_score": 0.25270408163265307,
+        "roc_auc": 0.5
+      }
+    }
+  },
+  "feature_importance": {
+    "sentiment_score": 0.18181337416172028,
+    "revenue_growth": 0.3313239812850952,
+    "net_margin": 0.17212654650211334,
+    "cashflow_margin": 0.1598178893327713,
+    "liabilities_to_assets": 0.15491823852062225
+  },
+  "runtime": {
+    "numpy": "2.3.5",
+    "pandas": "2.2.3",
+    "scikit-learn": "1.8.0",
+    "xgboost": "3.4.1",
+    "langchain-core": "1.6.6"
+  }
+}

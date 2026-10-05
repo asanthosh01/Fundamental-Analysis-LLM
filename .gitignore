@@ -1,5 +1,11 @@
+.venv/
 venv/
 __pycache__/
-*.pyc
+*.py[cod]
+.pytest_cache/
 .DS_Store
 .env
+*.gguf
+artifacts/real/
+data/training.csv
+data/training.audit.json

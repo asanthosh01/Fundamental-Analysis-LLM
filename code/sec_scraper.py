@@ -1,25 +1,22 @@
+"""Retrieve filing HTML using a contact User-Agent supplied by the runner."""
+import argparse
+import os
+from pathlib import Path
 import requests
 from bs4 import BeautifulSoup
 
-CIK = "0000320193"
-
-headers = {
-    "User-Agent": "Albin Santhosh (asanthosh2406@gmail.com)",
-    "Accept-Encoding": "gzip, deflate",
-    "Host": "www.sec.gov"
-}
-
-filing_url = f"https://www.sec.gov/Archives/edgar/data/{CIK}/000032019324000123/aapl-20240928.htm"
-
-filing_html = requests.get(filing_url, headers=headers).text
-
-print("Filing URL:", filing_url)
-print("Filing HTML content preview:", filing_html[:500])
-
-soup = BeautifulSoup(filing_html, "html.parser")
-text = soup.get_text()
-
-with open("apple_10k_20240928.txt", "w", encoding="utf-8") as f:
-    f.write(text)
-
-print("Apple 10-K filing saved as 'apple_10k_20240928.txt'")
+if __name__ == "__main__":
+    parser=argparse.ArgumentParser()
+    parser.add_argument("--url",required=True)
+    parser.add_argument("--out",required=True,type=Path)
+    args=parser.parse_args()
+    from urllib.parse import urlparse
+    if urlparse(args.url).hostname not in {"www.sec.gov","sec.gov"}:
+        parser.error("Provide an SEC filing URL")
+    agent=os.environ.get("SEC_USER_AGENT","")
+    if "@" not in agent:
+        parser.error("Set SEC_USER_AGENT to your name and real contact email")
+    response=requests.get(args.url,headers={"User-Agent":agent},timeout=30)
+    response.raise_for_status()
+    args.out.parent.mkdir(parents=True,exist_ok=True)
+    args.out.write_text(BeautifulSoup(response.text,"html.parser").get_text(" ",strip=True),encoding="utf-8")

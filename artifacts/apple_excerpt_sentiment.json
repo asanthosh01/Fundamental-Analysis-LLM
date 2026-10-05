@@ -1,0 +1,31 @@
+{
+  "schema_version": 1,
+  "backend": "local_mistral_langchain",
+  "model": "Mistral-7B-Instruct GGUF",
+  "source_sha256": "70d2e477f3e1dcaff5f46bcdeea959155f5d3bc021907d8e2252ef15d12c0c22",
+  "sentiment_score": 0.0,
+  "aggregation": "Character-weighted mean of chunk sentiment scores; not calibrated",
+  "chunks": [
+    {
+      "chunk": 0,
+      "characters": 3000,
+      "evidence": [
+        "Macroeconomic conditions, including inflation, interest rates and currency fluctuations, have directly and indirectly impacted, and could in the future materially impact, the Company\u2019s results of operations and financial condition.",
+        "Americas net sales increased during 2024 compared to 2023 due primarily to higher net sales of Services.",
+        "Europe net sales increased during 2024 compared to 2023 due primarily to higher net sales of Services and iPhone."
+      ],
+      "score": 0,
+      "summary": "Apple's net sales increased in some segments due to higher sales of Services, while net sales decreased in others due to lower sales of specific products and unfavorable currency impacts.",
+      "risks": [
+        "Impact of macroeconomic conditions on business operations and financial condition",
+        "Currency fluctuations affecting net sales in international markets",
+        "Lower net sales of specific products in certain segments"
+      ],
+      "sentiment": "neutral"
+    }
+  ],
+  "model_sha256": "3e0039fd0273fcbebb49228943b17831aadd55cbcbf56f0af00499be2040ccf9",
+  "runner_version": "version: 0.6.0-dev (build 1, commit 50569eb)\nbuilt with GNU 13.3.0 for Linux x86_64",
+  "model_source": "https://huggingface.co/TheBloke/Mistral-7B-Instruct-v0.2-GGUF",
+  "scope": "Actual local inference on one 3,000-character excerpt of the existing Apple 2024 MD&A; not sentiment accuracy evaluation"
+}
